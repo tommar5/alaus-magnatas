@@ -47,7 +47,13 @@ Ir paskutine ką reikia atlikt tai sukurt lenteles bei ryšius tarp jų:
 ```
 php bin/console doctrine:schema:update --force
 ```
+### Kaip paleist projektą
 
+Terminale iejus i projekto katalogą paleidžiame sekančia komanda:
+
+```
+bin/console server:start
+```
 ### Kaip pradėti naudotis projektu
 
 Užeinam i "http://localhost:8000/application" arba "http://127.0.0.1:8000/application" 
