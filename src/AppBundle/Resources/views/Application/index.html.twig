@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block css %}
+    {% include 'AppBundle::application_css.html.twig' %}
+    {% include 'AppBundle::results_css.html.twig' %}
+{%  endblock %}
+
+{% block body %}
+    <div id="map">
+    </div>
+    <form action="{{ path('app_application_index') }}" method="get">
+        <div id="over_map" class="col-sm-12 col-md-6 col-lg-6">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">Lat:</div>
+                        <input type="text" class="form-control" id="FormInputGroup" placeholder="Exp:54.8899548" name="latitude" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">Lng:</div>
+                        <input type="text" class="form-control" id="FormInputGroup" placeholder="Exp:23.8570527" name="longitude" required>
+                    </div>
+                </div>
+                {% include 'AppBundle:Application:search.html.twig' %}
+            </div>
+        </div>
+    </form>
+
+    {% include 'AppBundle:Application:results.html.twig' %}
+
+    {% include 'AppBundle:Application:about_application.html.twig' %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {% include 'AppBundle::google_maps_js.html.twig' %}
+{% endblock %}

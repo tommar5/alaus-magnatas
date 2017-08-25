@@ -1,0 +1,38 @@
+<div id="results_over_map"  class="panel panel-primary kanban-col">
+    <div class="panel-heading">
+        Search Result
+        <i class="fa fa-2x fa-plus-circle pull-right"></i>
+    </div>
+    <div class="panel-body">
+        <div id="TODO" class="kanban-centered">
+
+            {% for brewery in breweries %}
+            <article class="kanban-entry grab" id="item1" draggable="true">
+                <div class="kanban-entry-inner">
+                    <div class="kanban-label">
+                        <h2><span>Brewery Name:</span><a href="#">{{ brewery.name }}</a></h2>
+                        {% for beer in brewery.beers %}
+                            {% if beer.cat.id == -1 %}
+                                <p>{{ beer.name }}: <b> No Category</b></p>
+                            {% else %}
+                                <p class="black_text">{{ beer.name }}: <b>Category</b> <p class="grey_text">{{ beer.cat.catName }}</p></p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+
+            <article>
+                <div class="kanban-entry-inner">
+                    <div class="kanban-label">
+                        {% if route is not empty %}
+                        {% set distance = route|last %}
+                        <h2><span>Total trip:</span><a href="#">{{ distance.distance|round }} km</a></h2>
+                        {% endif %}
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>

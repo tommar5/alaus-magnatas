@@ -1,0 +1,10 @@
+{% set Content = 'This app is made to find neares breweries for beer lovers. Write Latitude and Longitude of your location and click Search button.' %}
+<a href="#" id="about" title="About App" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="{{ Content }}">
+    <b>i</b>
+</a>
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
+    });
+</script>

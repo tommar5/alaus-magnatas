@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% if latitude is null %}
+    {% set latitude = 54.8899548 %}
+    {% set longitude = 23.8570527 %}
+{% endif %}
+
+{%  block javascripts %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOoSimrehdzextttoT-Tbi494haTXxKE4"></script>
+    <script>
+        var map;
+        function initialize() {
+            var mapOptions = {
+                zoom: 7,
+                center: {lat: {{ latitude }}, lng: {{ longitude }}}
+            };
+            map = new google.maps.Map(document.getElementById('map'),
+                mapOptions);
+
+            var markerHome = new google.maps.Marker({
+                position: {lat: {{ latitude }}, lng: {{ longitude }}},
+                map: map
+            });
+
+            google.maps.event.addListener(markerHome, 'click', function () {
+                infowindow.open(map, markerHome);
+            });
+
+            var infowindow = new google.maps.InfoWindow({
+                content: '<p>Marker Location:' + markerHome.getPosition() + '</p>'
+            });
+
+            {% for result in route %}
+                marker = new google.maps.Marker({
+                    position: {lat: {{ result.latitude }}, lng: {{ result.longitude }}},
+                    map: map
+                });
+            {% endfor %}
+
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+    {% include 'AppBundle::results_js.html.twig' %}
+
+{%  endblock %}
